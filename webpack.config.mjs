@@ -36,6 +36,26 @@ export default (_, { mode }) => {
             'sass-loader',
           ],
         },
+        {
+          test: /\.html$/i,
+          loader: "html-loader",
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg)$/i,
+          type: 'asset/resource', // use /inline if dont work
+          parser: {
+            dataUrlCondition: {
+              limit: 30 * 1024,
+            },
+          },
+        },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'fonts/[hash][ext][query]',
+          },
+        },
       ],
     },
     plugins: [
